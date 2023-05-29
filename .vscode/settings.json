@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "*.embeddedhtml": "html",
-        "gps.h": "c"
+        "gps.h": "c",
+        "unistd.h": "c"
     }
 }
