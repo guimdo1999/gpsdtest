@@ -121,7 +121,7 @@ int main()
                 while (reports_count--)
                 {
                     info = (le_advertising_info *)offset;
-                    if (info->length == 31 /* && info->data[9] == 0xFA && info->data[10] == 0xFF */)
+                    if (info->length == 31 && info->data[2] == 0xFA && info->data[3] == 0xFF )
                     {
                         // Processar os dados do dispositivo com o UUID 0xFFFA
                         char addr[18];
