@@ -12,14 +12,14 @@
 
 static bool kill_program = false;
 
-static void sig_handler(int signo)
+/* static void sig_handler(int signo)
 {
     if (signo == SIGINT || signo == SIGSTOP || signo == SIGKILL || signo == SIGTERM)
     {
         kill_program = true;
     }
 }
-
+ */
 int main()
 {
     int device_id = hci_get_route(NULL);
@@ -36,10 +36,10 @@ int main()
     hci_filter_set_ptype(HCI_EVENT_PKT, &filter);
     hci_filter_set_event(EVT_LE_META_EVENT, &filter);
 
-    signal(SIGINT, sig_handler);
+    /* signal(SIGINT, sig_handler);
     signal(SIGKILL, sig_handler);
     signal(SIGSTOP, sig_handler);
-    signal(SIGTERM, sig_handler);
+    signal(SIGTERM, sig_handler); */
 
     if (setsockopt(socket, SOL_HCI, HCI_FILTER, &filter, sizeof(filter)) < 0)
     {
@@ -51,8 +51,8 @@ int main()
     // Loop para receber e tratar os eventos
     while (1)
     {
-        if (kill_program)
-                break;
+        /* if (kill_program)
+                break; */
         printf("ANtes read");
         unsigned char buf[HCI_MAX_EVENT_SIZE];
         int len = read(socket, buf, sizeof(buf));
