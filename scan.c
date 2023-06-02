@@ -53,8 +53,10 @@ int main()
     {
         if (kill_program)
                 break;
+        printf("ANtes read");
         unsigned char buf[HCI_MAX_EVENT_SIZE];
         int len = read(socket, buf, sizeof(buf));
+        printf("depois read");
         if (len >= HCI_EVENT_HDR_SIZE)
         {
             evt_le_meta_event *meta_event = (evt_le_meta_event *)(buf + HCI_EVENT_HDR_SIZE + 1);
