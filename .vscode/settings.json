@@ -2,6 +2,10 @@
     "files.associations": {
         "*.embeddedhtml": "html",
         "gps.h": "c",
-        "unistd.h": "c"
+        "unistd.h": "c",
+        "hci_lib.h": "c",
+        "bluetooth.h": "c",
+        "signal.h": "c",
+        "stdlib.h": "c"
     }
 }
