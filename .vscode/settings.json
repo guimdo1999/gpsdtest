@@ -6,6 +6,7 @@
         "hci_lib.h": "c",
         "bluetooth.h": "c",
         "signal.h": "c",
-        "stdlib.h": "c"
+        "stdlib.h": "c",
+        "stdbool.h": "c"
     }
 }
