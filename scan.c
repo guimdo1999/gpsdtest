@@ -1,11 +1,5 @@
-//
-//  Intel Edison Playground
-//  Copyright (c) 2015 Damian Kołakowski. All rights reserved.
-//
-
 #include <stdlib.h>
 #include <errno.h>
-#include <curses.h>
 #include <unistd.h>
 #include <sys/ioctl.h>
 #include <sys/socket.h>
@@ -115,13 +109,19 @@ int main()
 			if ( meta_event->subevent == EVT_LE_ADVERTISING_REPORT ) {
 				uint8_t reports_count = meta_event->data[0];
 				void * offset = meta_event->data + 1;
-				while ( reports_count-- ) {
-					info = (le_advertising_info *)offset;
-					char addr[18];
-					ba2str(&(info->bdaddr), addr);
-					printf("%s - RSSI %d\n", addr, (char)info->data[info->length]);
-					offset = info->data + info->length + 2;
-				}
+				while (reports_count--) {
+                    info = (le_advertising_info*)offset;
+                    if (info->length >= 2 && memcmp(info->data + 9, "\xFA\xFF", 2) == 0) {
+                        // Processar os dados do dispositivo com o UUID 0xFFFA
+                        char addr[18];
+                        ba2str(&(info->bdaddr), addr);
+                        printf("Dispositivo encontrado com UUID 0xFFFA:\n");
+                        printf("Endereço: %s\n", addr);
+                        // Outros dados do dispositivo
+                        // ...
+                    }
+                    offset = info->data + info->length + 2;
+                }
 			}
 		}
 	}
