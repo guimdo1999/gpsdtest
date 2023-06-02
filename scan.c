@@ -72,6 +72,11 @@ int main()
                     printf("Endereço: %s\n", addr);
                     // Outros dados do dispositivo
                     // ...
+                }else {
+                    printf("Dispositivo encontrado normal:\n");
+                    char addr[18];
+                    ba2str(&info->bdaddr, addr);
+                    printf("Endereço: %s\n", addr);
                 }
             }
         }
