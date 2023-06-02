@@ -111,7 +111,7 @@ int main()
 				void * offset = meta_event->data + 1;
 				while (reports_count--) {
                     info = (le_advertising_info*)offset;
-                    if (info->length >= 2 && memcmp(info->data + 9, "\xFA\xFF", 2) == 0) {
+                     if (info->length >= 18 && info->data[3] == 0xFA && info->data[4] == 0xFF) {
                         // Processar os dados do dispositivo com o UUID 0xFFFA
                         char addr[18];
                         ba2str(&(info->bdaddr), addr);
